@@ -1,6 +1,18 @@
 vim.cmd([[
     cd C:\Users\Admin\Desktop\code
+    set hls
+    set is
+        set cb=unnamed
+    set gfn=Fixedsys:h10
+    set ts=4
+    set sw=4
+    set si
+    au GUIEnter * simalt ~x
 
+    inoremap { {}<Left>
+    inoremap {<CR> {<CR>}<Esc>O
+    inoremap {{ {
+    inoremap {} {}
 ]])
 
 -- Packer stuff
