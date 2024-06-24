@@ -1,5 +1,5 @@
 vim.cmd([[
-    cd C:\Users\Admin\Desktop\code
+    cd C:\Users\doget\Desktop\cot
     set hls
     set is
         set cb=unnamed
@@ -8,6 +8,7 @@ vim.cmd([[
     set sw=4
     set si
     au GUIEnter * simalt ~x
+    set number
 
     inoremap { {}<Left>
     inoremap {<CR> {<CR>}<Esc>O
