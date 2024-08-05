@@ -83,7 +83,18 @@ vim.keymap.set('n', '<tab>', function()
 end, { silent = true })
 
 vim.keymap.set('n', '<C-B>', function()
-  vim.cmd([[
-    !g++ % -o -Wall -Wextra -pedantic -std=c++17 -O3 -Wshadow -Wformat=2 -Wfloat-equal -Wconversion -Wlogical-op -Wshift-overflow=2 -Wduplicated-cond -Wcast-qual -Wcast-align -D_GLIBCXX_DEBUG -D_GLIBCXX_DEBUG_PEDANTIC && -Wall.exe < in > out
-  ]])
+  -- Get the directory of the current file
+  local file_dir = vim.fn.expand('%:p:h')
+  -- Define the path for the executable
+  local exe_path = file_dir .. '/a.exe'
+
+  -- Compile command with additional preprocessor definitions
+  local compile_command = string.format(
+    '!g++ %s -o %s -Wall -Wextra -pedantic -std=c++17 -O3 -Wshadow -Wformat=2 -Wfloat-equal -Wconversion -Wlogical-op -Wshift-overflow=2 -Wduplicated-cond -Wcast-qual -Wcast-align -DDEBUG -DDONT_TAKE_INPUT -D_GLIBCXX_DEBUG -D_GLIBCXX_DEBUG_PEDANTIC && %s < in > out',
+    vim.fn.expand('%'), exe_path, exe_path
+  )
+
+  -- Execute the compile command
+  vim.cmd(compile_command)
 end, {silent = true})
+
